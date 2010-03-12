@@ -333,7 +333,7 @@ module DataMapper
       # @api semipulic
       def valid?(value, negated = false)
         case value
-          when Enumerable then valid_target_collection?(value, negated)
+          when Collection || Enumerable then valid_target_collection?(value, negated)
           when Resource   then valid_target?(value)
           when nil        then true
           else

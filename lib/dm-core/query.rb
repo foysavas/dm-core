@@ -1137,6 +1137,7 @@ module DataMapper
     #
     # @api private
     def append_condition(subject, bind_value, model = self.model, operator = :eql)
+      operator = :in if (bind_value.is_a?(DataMapper::Collection) && operator == :eql)
       case subject
         when Property, Associations::Relationship then append_property_condition(subject, bind_value, operator)
         when Symbol                               then append_symbol_condition(subject, bind_value, model, operator)
